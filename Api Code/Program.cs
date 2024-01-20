@@ -1,4 +1,5 @@
-using Api_Code.Service;
+using Api_Code.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,14 +9,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-//????? ???? ?????
-//??? ???? ??????? ????
-//builder.Services.AddTransient<WeatherForecastService>();
-//??? ????? ??????? ?????
-builder.Services.AddScoped<IWeatherForecastService , WeatherForecastService>();
-//???????? ??????? ????
-//builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddDbContext<AppDbContext>(op =>
+      op.UseSqlServer(builder.Configuration.GetConnectionString("myCon")));
 
 var app = builder.Build();
 

@@ -35,7 +35,7 @@ namespace Api_Code.Controllers
         [Route("{id}")]
         public ActionResult<IEnumerable<Product>> GetById(int id)
         {
-            var records = _db.Set<Product>().Find(id);
+            var records = _db.Set<Product>().Find(id); 
            return records != null ? Ok(records) : NotFound(); 
         }
 
@@ -65,7 +65,7 @@ namespace Api_Code.Controllers
         [Route("{id}")]
         public ActionResult<int> DeleteProduct(int id)
         {
-            var existingProduct = _db.Set<Product>().Find(id);
+            var existingProduct = _db.Set<Product>().Find(id); 
             _db.Set<Product>().Remove(existingProduct);
             _db.SaveChanges();
             return Ok();

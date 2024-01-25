@@ -1,4 +1,5 @@
 using Api_Code.Data;
+using Api_Code.Middlewares;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +24,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseMiddleware<ProfileMiddleware>();
+app.UseMiddleware<RateLimitingMiddleware>();
 app.UseAuthorization();
 
 app.MapControllers();
